@@ -1,3 +1,5 @@
+//files that stores the ID's of each of the constructed Categories from the Categories class.
+
 import Category from '../models/category';
 
 export const CATEGORIES = [

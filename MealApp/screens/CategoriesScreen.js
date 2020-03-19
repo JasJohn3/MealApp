@@ -1,5 +1,6 @@
 import React from 'react';
 import {View,FlatList, Text,Button,StyleSheet, TouchableOpacity, Platform} from 'react-native';
+//import the Javascript object for CATEGORIES that contains the values for each Category.
 import {CATEGORIES} from '../data/dummy-data';
 import Colors from '../constants/Colors';
 
@@ -9,7 +10,12 @@ const CatagoriesScreen = props =>{
         //onPress activates an inline function using the navigation.navigate method. 
         //'CategoryMeals' is the page found in the category.js file, 
         //categoryId is a variable object created to pass the item.id from the array of dummy-data.js as a param.
-        return <TouchableOpacity style={styles.gridItem} onPress={()=> props.navigation.navigate('CategoryMeals',{categoryId:itemData.item.id})}>
+        return <TouchableOpacity 
+                //style sheet for the Grid Items
+                style={styles.gridItem} 
+                //function that navigates to the selected category
+                onPress={()=> props.navigation.navigate('CategoryMeals',{categoryId:itemData.item.id})}>
+                //itemData.item.title accesses the Category title and sets the title as the header.
                 <View><Text>{itemData.item.title}</Text></View>
                 </TouchableOpacity>;
         };
@@ -18,11 +24,13 @@ const CatagoriesScreen = props =>{
         <FlatList keyExtractor={(item, index)=> item.id} data={CATEGORIES} renderItem={renderGridItem} numColumns={2} />
     );
 };
+//This is a function that allows access to the Object properties.  You can declare a title within this function
+//This is one of a number of methods for Creating Header Titles for your app.
 CatagoriesScreen.navigationOptions = {
 headerTitle: 'Meal Categories',
 headerStyle: {
     //applied a ternary operator using Platform to determine the OS being used.
-    backgroundColor:Platform.OS === 'android' ? Colors.primaryColor :'white'
+    backgroundColor: Platform.OS === 'android' ? Colors.primaryColor :' '
 },
 //applied a ternary operator using Platform to determine the OS being used.
 headerTintColor: Platform.OS === 'android' ?  'white': Colors.accentColor

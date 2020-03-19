@@ -13,7 +13,7 @@ const CategoryMealScreen = props =>{
                 <Button title="Meal Details!" onPress={
             () => props.navigation.navigate('MealDetail')
                 } />
-                    <Button title="Categories!" onPress={
+                <Button title="Categories!" onPress={
             () => props.navigation.navigate('Categories')
                 } />
             </View>
