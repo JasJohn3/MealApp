@@ -2,7 +2,7 @@ import React from 'react';
 import {View,FlatList, Text,Button,StyleSheet, TouchableOpacity, Platform} from 'react-native';
 //import the Javascript object for CATEGORIES that contains the values for each Category.
 import {CATEGORIES} from '../data/dummy-data';
-import Colors from '../constants/Colors';
+// import Colors from '../constants/Colors';
 
 
 const CatagoriesScreen = props =>{
@@ -28,12 +28,12 @@ const CatagoriesScreen = props =>{
 //This is one of a number of methods for Creating Header Titles for your app.
 CatagoriesScreen.navigationOptions = {
 headerTitle: 'Meal Categories',
-headerStyle: {
-    //applied a ternary operator using Platform to determine the OS being used.
-    backgroundColor:Platform.OS === 'android' ? Colors.primaryColor :''
-},
-//applied a ternary operator using Platform to determine the OS being used.
-headerTintColor: Platform.OS === 'android' ?  'white': Colors.accentColor
+// headerStyle: {
+//     //applied a ternary operator using Platform to determine the OS being used.
+//     backgroundColor:Platform.OS === 'android' ? Colors.primaryColor :''
+// },
+// //applied a ternary operator using Platform to determine the OS being used.
+// headerTintColor: Platform.OS === 'android' ?  'white': Colors.accentColor
 };
 
 const styles = StyleSheet.create({
