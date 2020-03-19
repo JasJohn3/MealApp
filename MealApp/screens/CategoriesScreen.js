@@ -15,7 +15,7 @@ const CatagoriesScreen = props =>{
                 style={styles.gridItem} 
                 //function that navigates to the selected category
                 onPress={()=> props.navigation.navigate('CategoryMeals',{categoryId:itemData.item.id})}>
-                //itemData.item.title accesses the Category title and sets the title as the header.
+                
                 <View><Text>{itemData.item.title}</Text></View>
                 </TouchableOpacity>;
         };
@@ -30,7 +30,7 @@ CatagoriesScreen.navigationOptions = {
 headerTitle: 'Meal Categories',
 headerStyle: {
     //applied a ternary operator using Platform to determine the OS being used.
-    backgroundColor: Platform.OS === 'android' ? Colors.primaryColor :' '
+    backgroundColor:Platform.OS === 'android' ? Colors.primaryColor :''
 },
 //applied a ternary operator using Platform to determine the OS being used.
 headerTintColor: Platform.OS === 'android' ?  'white': Colors.accentColor
