@@ -3,21 +3,17 @@ import {View,FlatList, Text,Button,StyleSheet, TouchableOpacity, Platform} from 
 //import the Javascript object for CATEGORIES that contains the values for each Category.
 import {CATEGORIES} from '../data/dummy-data';
 // import Colors from '../constants/Colors';
-
+import CategoryGridTile from '../components/CategoryGridTile';
 
 const CatagoriesScreen = props =>{
     const renderGridItem = (itemData)=>{
         //onPress activates an inline function using the navigation.navigate method. 
         //'CategoryMeals' is the page found in the category.js file, 
         //categoryId is a variable object created to pass the item.id from the array of dummy-data.js as a param.
-        return <TouchableOpacity 
-                //style sheet for the Grid Items
-                style={styles.gridItem} 
-                //function that navigates to the selected category
-                onPress={()=> props.navigation.navigate('CategoryMeals',{categoryId:itemData.item.id})}>
-                
-                <View><Text>{itemData.item.title}</Text></View>
-                </TouchableOpacity>;
+        return <CategoryGridTile 
+        title={itemData.item.title} 
+        color={itemData.item.color}
+        onSelect={()=>{props.navigation.navigate('CategoryMeals',{categoryId:itemData.item.id})}} />
         };
     return(
         
@@ -44,11 +40,6 @@ const styles = StyleSheet.create({
         margin: 10,
         borderRadius: 10,
     },
-    gridItem:{
-        flex: 1,
-        margin: 15,
-        height: 150
-    }
 });
 
 export default CatagoriesScreen;
