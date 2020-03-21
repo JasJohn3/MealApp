@@ -1,8 +1,9 @@
 import React from 'react';
-import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, View, Text, StyleSheet,} from 'react-native';
 
 
 const CategoryGridTile = props =>{
+
     return(    
     <TouchableOpacity 
         //style sheet for the Grid Items
@@ -43,7 +44,8 @@ const styles = StyleSheet.create({
     },
     title:{
         fontFamily: 'open-sans-bold',
-        fontSize: 22
+        fontSize: 22,
+        textAlign: 'right'
     }
 });
 
