@@ -1,64 +1,65 @@
 import React from 'react';
-import {View, Text,Button, StyleSheet} from 'react-native';
-import {CATEGORIES} from '../data/dummy-data';
-// import Colors from '../constants/Colors';
-const CategoryMealScreen = props =>{
-    //this creates a variable that stores the parameter created in the categories screen called 'categoryID'
-    //it is received from the Categories Screen through the js object{categoryId:itemData.item.id}
-    const catID = props.navigation.getParam('categoryId')
-    //this function searches for the categoryID and stores the value found.
-    const selectedCategory = CATEGORIES.find(cat => cat.id === catID);
-    return(
-        <View style= {styles.screen}>
-            <View style = {styles.screen}><Text>Meal Categories</Text></View>
-            <View style = {styles.screen}><Text>{selectedCategory.title}</Text></View>
-            <View style={styles.buttons}>
-                <Button title="Meal Details!" onPress={
-            () => props.navigation.navigate('MealDetail')
-                } />
-                <Button title="Categories!" onPress={
-            () => props.navigation.navigate('Categories')
-                } />
-            </View>
-        </View>
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 
+import { CATEGORIES, MEALS } from '../data/dummy-data';
+import MealItem from '../components/MealItem';
+
+const CategoryMealScreen = props => {
+  const renderMealItem = itemData => {
+    return (
+      <MealItem
+        title={itemData.item.title}
+        image={itemData.item.imageUrl}
+        duration={itemData.item.duration}
+        complexity={itemData.item.complexity}
+        affordability={itemData.item.affordability}
+        onSelectMeal={() => {
+          props.navigation.navigate({
+            routeName: 'MealDetail',
+            params: {
+              mealId: itemData.item.id
+            }
+          });
+        }}
+      />
     );
+  };
+
+  const catId = props.navigation.getParam('categoryId');
+
+  const displayedMeals = MEALS.filter(
+    meal => meal.categoryIds.indexOf(catId) >= 0
+  );
+
+  return (
+    <View style={styles.screen}>
+      <FlatList
+        data={displayedMeals}
+        keyExtractor={(item, index) => item.id}
+        renderItem={renderMealItem}
+        style={{ width: '100%' }}
+      />
+    </View>
+  );
 };
 
-//Utilizing the navigationOptions from the meal screen and passing the navigationData allowing access to navigationData Methods
 CategoryMealScreen.navigationOptions = navigationData => {
-    //navigationData allows access to the get param function to receive tha category id passed from the main screen
-    const catID = navigationData.navigation.getParam('categoryId');
-    //this variable searches the dummy-data.js array for the categoryId information
-    const selectedCategory = CATEGORIES.find(cat => cat.id === catID);
+  const catId = navigationData.navigation.getParam('categoryId');
 
-    return{
-        //headerTitle allows the ability to dynamical assign a new title based on the categoryId.
-        headerTitle: selectedCategory.title,
+  const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
 
-        // headerStyle: {
-        //     //applied a ternary operator using Platform to determine the OS being used.
-        //     backgroundColor:Platform.OS === 'android' ? Colors.primaryColor :''
-        // },
-        // //applied a ternary operator using Platform to determine the OS being used.
-        // headerTintColor: Platform.OS === 'android' ?  'white': Colors.accentColor
-    };
+  return {
+    headerTitle: selectedCategory.title
+  };
 };
 
 const styles = StyleSheet.create({
-    screen:{
-        flex: 1,
-        justifyContent: 'center',
-        alignContent:'center',
-    },
-    buttons:{
-        flex: 1,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        margin: 10,
-        borderRadius: 10,
-        flexDirection:'row',
-    },
+  screen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15
+  }
 });
 
 export default CategoryMealScreen;
