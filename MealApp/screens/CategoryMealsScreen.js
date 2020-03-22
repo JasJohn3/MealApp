@@ -8,11 +8,13 @@ const CategoryMealScreen = props => {
   const renderMealItem = itemData => {
     return (
       <MealItem
+    //   Passing Meals data into the meal component.  Data is derived from dummy-data.js and encapsulated using the meal model meal.js.
         title={itemData.item.title}
         image={itemData.item.imageUrl}
         duration={itemData.item.duration}
         complexity={itemData.item.complexity}
         affordability={itemData.item.affordability}
+        // A function that retrieves the meal details
         onSelectMeal={() => {
           props.navigation.navigate({
             routeName: 'MealDetail',

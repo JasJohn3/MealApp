@@ -12,12 +12,16 @@ const MealItem = props => {
     <View style={styles.mealItem}>
       <TouchableOpacity onPress={props.onSelectMeal}>
         <View>
+          {/* import styles and merge with existing styles using the spread operator ... */}
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
+            {/* image background is a standard component for setting a background */}
             <ImageBackground
+            // display background image
               source={{ uri: props.image }}
               style={styles.bgImage}
             >
               <View style={styles.titleContainer}>
+                {/* number of lines is for formatting */}
                 <Text style={styles.title} numberOfLines={1}>
                   {props.title}
                 </Text>
@@ -25,8 +29,11 @@ const MealItem = props => {
             </ImageBackground>
           </View>
           <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
+            {/* display Minutes the meal takes */}
             <Text>{props.duration}m</Text>
+            {/* display complexity and capitalize */}
             <Text>{props.complexity.toUpperCase()}</Text>
+            {/* display affordability */}
             <Text>{props.affordability.toUpperCase()}</Text>
           </View>
         </View>
@@ -66,7 +73,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12
   },
   title: {
-    fontFamily: 'open-sans-bold',
+    // fontFamily: 'open-sans-bold',
     fontSize: 20,
     color: 'white',
     textAlign: 'center'
