@@ -10,7 +10,9 @@ import {
 const MealItem = props => {
   return (
     <View style={styles.mealItem}>
+      {/* activate the onSelectMeal */}
       <TouchableOpacity onPress={props.onSelectMeal}>
+        {/* Meal Image View */}
         <View>
           {/* import styles and merge with existing styles using the spread operator ... */}
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
@@ -20,6 +22,7 @@ const MealItem = props => {
               source={{ uri: props.image }}
               style={styles.bgImage}
             >
+              {/* Meal Details View */}
               <View style={styles.titleContainer}>
                 {/* number of lines is for formatting */}
                 <Text style={styles.title} numberOfLines={1}>

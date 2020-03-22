@@ -5,6 +5,7 @@ import { CATEGORIES, MEALS } from '../data/dummy-data';
 import MealItem from '../components/MealItem';
 
 const CategoryMealScreen = props => {
+  // method for displaying our Meal Data
   const renderMealItem = itemData => {
     return (
       <MealItem
@@ -28,7 +29,7 @@ const CategoryMealScreen = props => {
   };
 
   const catId = props.navigation.getParam('categoryId');
-
+//Method for finding the Meal via the Category
   const displayedMeals = MEALS.filter(
     meal => meal.categoryIds.indexOf(catId) >= 0
   );

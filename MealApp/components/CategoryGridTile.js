@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     title:{
-        fontFamily: 'open-sans-bold',
+        // fontFamily: 'open-sans-bold',
         fontSize: 22,
         textAlign: 'right'
     }
